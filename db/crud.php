@@ -6,9 +6,9 @@
             $this->db = $conn;
         }
         
-        public function insertMembers($fname,$lname,$dob,$username,$email,$phone){
+        public function insertMembers($fname,$lname,$dob,$username,$email,$phone,$avatar_path){
             try {
-                $sql = "INSERT INTO members (firstname,lastname,dateofbirth,username,emailaddress,contactnumber)VALUES (:fname, :lname,:dob, :username, :email, :phone)";
+                $sql = "INSERT INTO members (firstname,lastname,dateofbirth,username,emailaddress,contactnumber,avatar_path)VALUES (:fname, :lname,:dob, :username, :email, :phone, :avatar_path)";
                 $stmt = $this-> db->prepare($sql);
                 $stmt->bindparam(':fname',$fname);
                 $stmt->bindparam(':lname',$lname);
@@ -16,6 +16,7 @@
                 $stmt->bindparam(':username',$username);
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':phone',$phone);
+                $stmt->bindparam(':avatar_path',$avatar_path);
 
                 $stmt->execute();
                 return true;
